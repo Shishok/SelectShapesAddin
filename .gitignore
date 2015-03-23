@@ -14,9 +14,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-# Windows shortcuts
-*.lnk
-
 # =========================
 # Operating System Files
 # =========================
@@ -28,6 +25,10 @@ $RECYCLE.BIN/
 .AppleDouble
 .LSOverride
 
+# Icon must end with two \r
+Icon
+
+
 # Thumbnails
 ._*
 
@@ -36,6 +37,9 @@ $RECYCLE.BIN/
 .Trashes
 
 # Directories potentially created on remote AFP share
+/publish/
+/bin/
+/obj/
 .AppleDB
 .AppleDesktop
 Network Trash Folder

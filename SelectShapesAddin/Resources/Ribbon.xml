@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="OnRibbonLoad">
+  <ribbon>
+    <tabs>
+      <tab idMso="TabHome">
+        <group id="Group1" label="SelectShapes">
+
+          <button id="QuickSelect" 
+            size="large" 
+            label="Быстрый выбор" 
+            onAction="OnRibbonButtonClick" 
+            getEnabled="IsRibbonCommandEnabled" 
+            imageMso="SelectMenu"
+            screentip="Быстрый выбор фигур"
+            supertip ="Вызов диалогового окна 'Быстрый выбор', для выделения групп фигур на листе, по заданным пользователем критериям"/>
+          
+          <separator id="sep1"/>
+          
+          <toggleButton id="ExtSelect" 
+            size="normal" 
+            onAction="OnRibbonButtonCheckClick" 
+            getEnabled="IsRibbonCommandEnabled" 
+            imageMso="MultipleSelect"
+            screentip="Расширенное выделение"
+            supertip ="Переключение программы в режим расширенного выделения (выделение нескольких фигур без удерживания клавиш Ctlr или Shift)"/>
+          
+          <toggleButton id="RectSelect" 
+            size="normal" 
+            onAction="OnRibbonButtonCheckClick" 
+            getPressed="IsToggleButtonPressed" 
+            getEnabled="IsRibbonCommandEnabled" 
+            imageMso="RectangleTool"
+            screentip="Выделение секущей рамкой" 
+            supertip ="Выделение всех фигур попавших под рамку выделения"/>                        
+          
+          <toggleButton id="LineSelect" 
+            size="normal" 
+            onAction="OnRibbonButtonCheckClick" 
+            getPressed="IsToggleButtonPressed" 
+            getEnabled="IsRibbonCommandEnabled"  
+            imageMso="LineTool"
+            screentip="Выделение линией" 
+            supertip ="Выделение всех фигур попавших под линию выделения"/>                        
+          
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

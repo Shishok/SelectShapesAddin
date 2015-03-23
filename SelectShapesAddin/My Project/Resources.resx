@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Command2_Label" xml:space="preserve">
+    <value>Быстрый выбор</value>
+  </data>
+  <data name="Command1_Label" xml:space="preserve">
+    <value>command 1</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Все_объекты" xml:space="preserve">
+    <value>Типы объектов,Слой,Имя мастера,Имя фигуры,ID фигуры,Текст,Стиль текста,Стиль линии,Стиль заливки,Длина,Периметр,Площадь,Положение X,Положение Y,Начало X,Начало Y,Конец X,Конец Y,Угол,Ширина,Высота,Тип линии,Тип заливки,Толщина линии,Сглаживание угла,Цвет заливки,Цвет линии,Цвет шрифта,Размер шрифта,Шрифт,Количество субфигур,Data123,Shapesheet</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions.Row_1.Action,Actions.Row_1.Menu,Actions.Row_1.TagName,Actions.Row_1.ButtonFace,Actions.Row_1.SortKey,Actions.Row_1.Checked,Actions.Row_1.Disabled,Actions.Row_1.ReadOnly,Actions.Row_1.Invisible,Actions.Row_1.BeginGroup,Actions.Row_1.FlyoutChild</value>
+  </data>
+  <data name="Action_Tags" xml:space="preserve">
+    <value>SmartTags.Row_1.X,SmartTags.Row_1.Y,SmartTags.Row_1.TagName,SmartTags.Row_1.XJustify,SmartTags.Row_1.YJustify,SmartTags.Row_1.DisplayMode,SmartTags.Row_1.ButtonFace,SmartTags.Row_1.Description,SmartTags.Row_1.Disabled</value>
+  </data>
+  <data name="_D_Endpoints" xml:space="preserve">
+    <value>BeginX,BeginY,EndX,EndY</value>
+  </data>
+  <data name="_D_Rotation_Properties" xml:space="preserve">
+    <value>RotationXAngle,RotationYAngle,RotationZAngle,RotationType,Perspective,DistanceFromGround,KeepTextFlat</value>
+  </data>
+  <data name="Additional_Effect_Properties" xml:space="preserve">
+    <value>ReflectionTrans,ReflectionSize,ReflectionDist,ReflectionBlur,GlowColor,GlowColorTrans,GlowSize,SoftEdgesSize,SketchSeed,SketchEnabled,SketchAmount,SketchLineWeight,SketchLineChange,SketchFillChange</value>
+  </data>
+  <data name="Alignment" xml:space="preserve">
+    <value>AlignLeft,AlignCenter,AlignRight,AlignTop,AlignMiddle,AlignBottom</value>
+  </data>
+  <data name="Bevel_Properties" xml:space="preserve">
+    <value>BevelTopType,BevelTopWidth,BevelTopHeight,BevelBottomType,BevelBottomWidth,BevelBottomHeight,BevelDepthColor,BevelDepthSize,BevelContourColor,BevelContourSize,BevelMaterialType,BevelLightingType,BevelLightingAngle</value>
+  </data>
+  <data name="Change_Shape_Behavior" xml:space="preserve">
+    <value>ReplaceLockShapeData,ReplaceLockText,ReplaceLockFormat,ReplaceCopyCells</value>
+  </data>
+  <data name="Character" xml:space="preserve">
+    <value>Char.Font[1],Char.Color[1],Char.Style[1],Char.Case[1],Char.Pos[1],Char.FontScale[1],Char.Size[1],Char.DblUnderline[1],Char.Overline[1],Char.Strikethru[1],Char.DoubleStrikethrough[1],Char.RTLText[1],Char.UseVertical[1],Char.Letterspace[1],Char.ColorTrans[1],Char.AsianFont[1],Char.ComplexScriptFont[1],Char.LocalizeFont[1],Char.ComplexScriptSize[1],Char.LangID[1]</value>
+  </data>
+  <data name="Connection_Points" xml:space="preserve">
+    <value>Connections.X1,Connections.Y1,Connections.DirX[1],Connections.DirY[1],Connections.Type[1],Connections.D</value>
+  </data>
+  <data name="Controls" xml:space="preserve">
+    <value>Controls.Row_1.X,Controls.Row_1.Y,Controls.Row_1.XDyn,Controls.Row_1.YDyn,Controls.Row_1.XCon,Controls.Row_1.YCon,Controls.Row_1.CanGlue,Controls.Row_1.Type,Controls.Row_1.Tip</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>TheData,TheText,EventDblClick,EventXFMod,EventDrop,EventMultiDrop</value>
+  </data>
+  <data name="Fill_Format" xml:space="preserve">
+    <value>FillForegnd,FillBkgnd,FillPattern,ShdwForegnd,ShdwPattern,FillForegndTrans,FillBkgndTrans,ShdwForegndTrans,ShdwBkgndTrans,ShapeShdwType,ShapeShdwOffsetX,ShapeShdwOffsetY,ShapeShdwObliqueAngle,ShapeShdwScaleFactor,ShapeShdwBlur,ShapeShdwShow</value>
+  </data>
+  <data name="Foreign_Image_Info" xml:space="preserve">
+    <value>ImgOffsetX,ImgOffsetY,ImgWidth,ImgHeight,ClippingPath</value>
+  </data>
+  <data name="Geometry" xml:space="preserve">
+    <value>Geometry1.NoFill,Geometry1.NoLine,Geometry1.NoShow,Geometry1.NoSnap,Geometry1.NoQuickDrag,Geometry1.X1,Geometry1.Y1,Geometry1.A1,Geometry1.B1,Geometry1.C1,Geometry1.D1,Geometry1.E1</value>
+  </data>
+  <data name="Glue_Info" xml:space="preserve">
+    <value>GlueType,WalkPreference,BegTrigger,EndTrigger</value>
+  </data>
+  <data name="Gradient_Properties" xml:space="preserve">
+    <value>LineGradientDir,LineGradientAngle,FillGradientDir,FillGradientAngle,LineGradientEnabled,FillGradientEnabled,RotateGradientWithShape,UseGroupGradient</value>
+  </data>
+  <data name="Group_Properties" xml:space="preserve">
+    <value>SelectMode,DisplayMode,IsDropTarget,IsSnapTarget,IsTextEditTarget,DontMoveChildren</value>
+  </data>
+  <data name="Hyperlinks" xml:space="preserve">
+    <value>Hyperlink.Row_1.Description,Hyperlink.Row_1.Address,Hyperlink.Row_1.SubAddress,Hyperlink.Row_1.ExtraInfo,Hyperlink.Row_1.Frame,Hyperlink.Row_1.NewWindow,Hyperlink.Row_1.Default,Hyperlink.Row_1.Invisible,Hyperlink.Row_1.SortKey</value>
+  </data>
+  <data name="Image_Properties" xml:space="preserve">
+    <value>Gamma,Contrast,Brightness,Sharpen,Blur,Denoise,Transparency</value>
+  </data>
+  <data name="Line_Format" xml:space="preserve">
+    <value>LineWeight,LineColor,LinePattern,Rounding,EndArrowSize,BeginArrow,EndArrow,LineCap,BeginArrowSize,LineColorTrans,CompoundType</value>
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
+    <value>NoObjHandles,NonPrinting,NoCtlHandles,NoAlignBox,UpdateAlignBox,HideText,DynFeedback,ObjType,Comment,IsDropSource,NoLiveDynamics,LocalizeMerge,NoProofing,Calendar,LangID,DropOnPageScale</value>
+  </data>
+  <data name="Paragraph" xml:space="preserve">
+    <value>Para.IndFirst[1],Para.IndLeft[1],Para.IndRight[1],Para.SpLine[1],Para.SpBefore[1],Para.SpAfter[1],Para.HorzAlign[1],Para.Bullet[1],Para.BulletStr[1],Para.BulletFont[1],Para.BulletFontSize[1],Para.TextPosAfterBullet[1],Para.Flags[1]</value>
+  </data>
+  <data name="Protection" xml:space="preserve">
+    <value>LockWidth,LockHeight,LockMoveX,LockMoveY,LockAspect,LockDelete,LockBegin,LockEnd,LockRotate,LockCrop,LockVtxEdit,LockTextEdit,LockFormat,LockGroup,LockCalcWH,LockSelect,LockCustProp,LockFromGroupFormat,LockThemeColors,LockThemeEffects,LockThemeConnectors,LockThemeFonts,LockThemeIndex,LockReplace,LockVariation</value>
+  </data>
+  <data name="Quick_Style" xml:space="preserve">
+    <value>QuickStyleLineColor,QuickStyleFillColor,QuickStyleShadowColor,QuickStyleFontColor,QuickStyleLineMatrix,QuickStyleFillMatrix,QuickStyleEffectsMatrix,QuickStyleFontMatrix,QuickStyleType,QuickStyleVariation</value>
+  </data>
+  <data name="Scratch" xml:space="preserve">
+    <value>Scratch.X1,Scratch.Y1,Scratch.A1,Scratch.B1,Scratch.C1,Scratch.D1</value>
+  </data>
+  <data name="Shape_Data" xml:space="preserve">
+    <value>Prop.Row_1.Value,Prop.Row_1.Prompt,Prop.Row_1.Label,Prop.Row_1.Format,Prop.Row_1.SortKey,Prop.Row_1.Type,Prop.Row_1.Invisible,Prop.Row_1.Ask,Prop.Row_1.LangID,Prop.Row_1.Calendar</value>
+  </data>
+  <data name="Shape_Layout" xml:space="preserve">
+    <value>ShapePermeableX,ShapePermeableY,ShapePermeablePlace,Relationships,ShapeFixedCode,ShapePlowCode,ShapeRouteStyle,ShapePlaceStyle,ConFixedCode,ConLineJumpCode,ConLineJumpStyle,ConLineJumpDirX,ConLineJumpDirY,ShapePlaceFlip,ConLineRouteExt,ShapeSplit,ShapeSplittable,DisplayLevel</value>
+  </data>
+  <data name="Shape_Transform" xml:space="preserve">
+    <value>PinX,PinY,Width,Height,LocPinX,LocPinY,Angle,FlipX,FlipY,ResizeMode</value>
+  </data>
+  <data name="Style_Properties" xml:space="preserve">
+    <value>EnableLineProps,EnableFillProps,EnableTextProps,HideForApply</value>
+  </data>
+  <data name="Tabs" xml:space="preserve">
+    <value>Tabs.Y1,Tabs.A1,Tabs.C1,Tabs.D1,Tabs.F1,Tabs.G1,Tabs.I1,Tabs.J1</value>
+  </data>
+  <data name="Text_Block_Format" xml:space="preserve">
+    <value>LeftMargin,RightMargin,TopMargin,BottomMargin,VerticalAlign,TextBkgnd,DefaultTabstop,TextDirection,TextBkgndTrans</value>
+  </data>
+  <data name="Text_Fields" xml:space="preserve">
+    <value>Fields.Value[1],Fields.Format[1],Fields.Type[1],Fields.UICat[1],Fields.UICod[1],Fields.UIFmt[1],Fields.Calendar[1],Fields.ObjectKind[1]</value>
+  </data>
+  <data name="Text_Transform" xml:space="preserve">
+    <value>TxtPinX,TxtPinY,TxtWidth,TxtHeight,TxtLocPinX,TxtLocPinY,TxtAngle</value>
+  </data>
+  <data name="Theme_Properties" xml:space="preserve">
+    <value>ColorSchemeIndex,EffectSchemeIndex,ConnectorSchemeIndex,FontSchemeIndex,ThemeIndex,VariationColorIndex,VariationStyleIndex,EmbellishmentIndex</value>
+  </data>
+  <data name="User_Defined_Cells" xml:space="preserve">
+    <value>User.Row_1.Value,User.Row_1.Prompt</value>
+  </data>
+  <data name="Layer_Membership" xml:space="preserve">
+    <value>LayerMember</value>
+  </data>
+  <data name="Other_Сells" xml:space="preserve">
+    <value>Copyright,HelpTopic,ShapeKeywords,ShapeTabStop</value>
+  </data>
+  <data name="ShapeSheet14" xml:space="preserve">
+    <value>1-D Endpoints,Action Tags,Actions,Alignment,Character,Connection Points,Controls,Events,Fill Format,Foreign Image Info,Geometry,Glue Info,Group Properties,Hyperlinks,Image Properties,Layer Membership,Line Format,Miscellaneous,Paragraph,Protection,Scratch,Shape Data,Shape Layout,Shape Transform,Tabs,Text Block Format,Text Fields,Text Transform,User-Defined Cells,Other Сells</value>
+  </data>
+  <data name="Command3_Label" xml:space="preserve">
+    <value>Выбор по ячейкам</value>
+  </data>
+  <data name="Размер_шрифта" xml:space="preserve">
+    <value>6,8,9,10,11,12,14,16,18,24,30,36,48,60</value>
+  </data>
+  <data name="Типы_объектов" xml:space="preserve">
+    <value>Простая фигура,Одномерная фигура,Коннектор,Сгруппированная фигура,Надпись,Выноска,Размер,Контейнер,Направляющая,Растровый рисунок,Метафайл,Объект OLE,Рукописный объект</value>
+  </data>
+  <data name="ShapeSheet15" xml:space="preserve">
+    <value>1-D Endpoints,3-D Rotation Properties,Action Tags,Actions,Additional Effect Properties,Alignment,Bevel Properties,Change Shape Behavior,Character,Connection Points,Controls,Events,Fill Format,Fill Gradient Stops,Foreign Image Info,Geometry,Glue Info,Gradient Properties,Group Properties,Hyperlinks,Image Properties,Layer Membership,Line Format,Line Gradient Stops,Miscellaneous,Other Сells,Paragraph,Protection,Quick Style,Scratch,Shape Data,Shape Layout,Shape Transform,Tabs,Text Block Format,Text Fields,Text Transform,Theme Properties,User-Defined Cells,Other Сells</value>
+  </data>
+  <data name="Fill_Gradient_Stops" xml:space="preserve">
+    <value>FillGradientStops.GradientStopColor[1],FillGradientStops.GradientStopColorTrans[1],FillGradientStops.GradientStopPosition[1]</value>
+  </data>
+  <data name="Line_Gradient_Stops" xml:space="preserve">
+    <value>LineGradientStops.GradientStopColor[1],LineGradientStops.GradientStopColorTrans[1],LineGradientStops.GradientStopPosition[1]</value>
+  </data>
+</root>
