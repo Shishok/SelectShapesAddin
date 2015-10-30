@@ -22,6 +22,8 @@ Partial Class dlgSelectForm
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgSelectForm))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbArea = New System.Windows.Forms.ComboBox()
         Me.lstProperties = New System.Windows.Forms.ListBox()
@@ -38,6 +40,8 @@ Partial Class dlgSelectForm
         Me.ckbSubSh = New System.Windows.Forms.CheckBox()
         Me.btn_Close = New System.Windows.Forms.Button()
         Me.ckbNewSet = New System.Windows.Forms.CheckBox()
+        Me.btn_Save = New System.Windows.Forms.Button()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'Label1
@@ -56,7 +60,7 @@ Partial Class dlgSelectForm
         Me.cmbArea.Items.AddRange(New Object() {"Страница", "Выделенные объекты"})
         Me.cmbArea.Location = New System.Drawing.Point(79, 12)
         Me.cmbArea.Name = "cmbArea"
-        Me.cmbArea.Size = New System.Drawing.Size(222, 21)
+        Me.cmbArea.Size = New System.Drawing.Size(193, 21)
         Me.cmbArea.TabIndex = 1
         '
         'lstProperties
@@ -67,7 +71,7 @@ Partial Class dlgSelectForm
         Me.lstProperties.Location = New System.Drawing.Point(14, 53)
         Me.lstProperties.Name = "lstProperties"
         Me.lstProperties.Size = New System.Drawing.Size(287, 173)
-        Me.lstProperties.TabIndex = 4
+        Me.lstProperties.TabIndex = 3
         '
         'lblTitlProp
         '
@@ -87,7 +91,7 @@ Partial Class dlgSelectForm
         Me.btn_OK.Location = New System.Drawing.Point(175, 330)
         Me.btn_OK.Name = "btn_OK"
         Me.btn_OK.Size = New System.Drawing.Size(61, 23)
-        Me.btn_OK.TabIndex = 15
+        Me.btn_OK.TabIndex = 10
         Me.btn_OK.Text = "OK"
         Me.btn_OK.UseVisualStyleBackColor = True
         '
@@ -100,7 +104,7 @@ Partial Class dlgSelectForm
         Me.btn_Apply.Location = New System.Drawing.Point(95, 330)
         Me.btn_Apply.Name = "btn_Apply"
         Me.btn_Apply.Size = New System.Drawing.Size(74, 23)
-        Me.btn_Apply.TabIndex = 14
+        Me.btn_Apply.TabIndex = 9
         Me.btn_Apply.Text = "Применить"
         Me.btn_Apply.UseVisualStyleBackColor = True
         '
@@ -122,7 +126,7 @@ Partial Class dlgSelectForm
         Me.cmbOperator.Location = New System.Drawing.Point(80, 239)
         Me.cmbOperator.Name = "cmbOperator"
         Me.cmbOperator.Size = New System.Drawing.Size(222, 21)
-        Me.cmbOperator.TabIndex = 18
+        Me.cmbOperator.TabIndex = 4
         '
         'cmbValue
         '
@@ -133,7 +137,7 @@ Partial Class dlgSelectForm
         Me.cmbValue.Name = "cmbValue"
         Me.cmbValue.Size = New System.Drawing.Size(222, 21)
         Me.cmbValue.Sorted = True
-        Me.cmbValue.TabIndex = 20
+        Me.cmbValue.TabIndex = 5
         '
         'Label5
         '
@@ -172,7 +176,7 @@ Partial Class dlgSelectForm
         Me.ckbAddSelected.Location = New System.Drawing.Point(15, 292)
         Me.ckbAddSelected.Name = "ckbAddSelected"
         Me.ckbAddSelected.Size = New System.Drawing.Size(84, 24)
-        Me.ckbAddSelected.TabIndex = 26
+        Me.ckbAddSelected.TabIndex = 6
         Me.ckbAddSelected.Text = "Выделять"
         Me.ckbAddSelected.UseVisualStyleBackColor = True
         '
@@ -183,7 +187,7 @@ Partial Class dlgSelectForm
         Me.ckbSubSh.Location = New System.Drawing.Point(215, 293)
         Me.ckbSubSh.Name = "ckbSubSh"
         Me.ckbSubSh.Size = New System.Drawing.Size(86, 24)
-        Me.ckbSubSh.TabIndex = 27
+        Me.ckbSubSh.TabIndex = 8
         Me.ckbSubSh.Text = "Субфигуры"
         Me.ckbSubSh.UseVisualStyleBackColor = True
         '
@@ -196,7 +200,7 @@ Partial Class dlgSelectForm
         Me.btn_Close.Location = New System.Drawing.Point(242, 330)
         Me.btn_Close.Name = "btn_Close"
         Me.btn_Close.Size = New System.Drawing.Size(61, 23)
-        Me.btn_Close.TabIndex = 28
+        Me.btn_Close.TabIndex = 11
         Me.btn_Close.Text = "Закрыть"
         Me.btn_Close.UseVisualStyleBackColor = True
         '
@@ -206,15 +210,28 @@ Partial Class dlgSelectForm
         Me.ckbNewSet.Location = New System.Drawing.Point(105, 292)
         Me.ckbNewSet.Name = "ckbNewSet"
         Me.ckbNewSet.Size = New System.Drawing.Size(104, 24)
-        Me.ckbNewSet.TabIndex = 29
+        Me.ckbNewSet.TabIndex = 7
         Me.ckbNewSet.Text = "Новый набор"
         Me.ckbNewSet.UseVisualStyleBackColor = True
+        '
+        'btn_Save
+        '
+        Me.btn_Save.Image = CType(resources.GetObject("btn_Save.Image"), System.Drawing.Image)
+        Me.btn_Save.Location = New System.Drawing.Point(277, 10)
+        Me.btn_Save.Name = "btn_Save"
+        Me.btn_Save.Size = New System.Drawing.Size(25, 25)
+        Me.btn_Save.TabIndex = 2
+        Me.btn_Save.UseVisualStyleBackColor = True
+        '
+        'ToolTip1
+        '
         '
         'dlgSelectForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(314, 362)
+        Me.Controls.Add(Me.btn_Save)
         Me.Controls.Add(Me.ckbNewSet)
         Me.Controls.Add(Me.btn_Close)
         Me.Controls.Add(Me.ckbSubSh)
@@ -261,4 +278,6 @@ Partial Class dlgSelectForm
     Friend WithEvents ckbSubSh As System.Windows.Forms.CheckBox
     Friend WithEvents btn_Close As System.Windows.Forms.Button
     Friend WithEvents ckbNewSet As System.Windows.Forms.CheckBox
+    Friend WithEvents btn_Save As System.Windows.Forms.Button
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 End Class

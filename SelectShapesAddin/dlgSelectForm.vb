@@ -12,6 +12,7 @@
         lstProperties.Items.AddRange(Split(My.Resources.ResourceManager.GetString("Все_объекты"), ","))
         CountSel()
         SaveSettings(0)
+        Call ToolTip()
     End Sub
 
     Private Sub dlgSelectForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
@@ -86,7 +87,8 @@
                 cmbValue.Text = FtxtV()
             Case "Длина", "Периметр", "Площадь", "Угол", "Сглаживание угла", "Тип линии", "Тип заливки", "Толщина линии"
                 AddOperator(1) : cmbValue.Text = FtxtV()
-            Case "Цвет заливки", "Цвет линии", "Цвет шрифта", "Количество субфигур"
+            Case "Цвет заливки", "Цвет линии", "Цвет шрифта", "Количество субфигур", "Количество Actions", "Количество секций Geometry", "Количество Connection Points", "Количество Controls",
+                  "Количество Character", "Количество HyperLink", "Количество Paragraph", "Количество Scratch", "Количество Shape Data", "Количество Tab", "Количество TextField", "Количество User Cells"
                 AddOperator(1) : cmbValue.Text = FtxtV()
             Case "Data123" : AddOperator(2) : cmbValue.Text = FtxtV()
             Case "Shapesheet"
@@ -155,6 +157,20 @@
             Case "Цвет шрифта" : SelectByTypeColor("Char.Color[1]")
             Case "Размер шрифта" : SelectBySizeFont()
             Case "Шрифт" : SelectByFont()
+
+            Case "Количество секций Geometry" : SelectByCountGeometry()
+            Case "Количество Actions" : SelectByCountSectRows(240)
+            Case "Количество Connection Points" : SelectByCountSectRows(7)
+            Case "Количество Controls" : SelectByCountSectRows(9)
+            Case "Количество Character" : SelectByCountSectRows(3)
+            Case "Количество HyperLink" : SelectByCountSectRows(244)
+            Case "Количество Paragraph" : SelectByCountSectRows(4)
+            Case "Количество Scratch" : SelectByCountSectRows(6)
+            Case "Количество Shape Data" : SelectByCountSectRows(243)
+            Case "Количество Tab" : SelectByCountSectRows(5)
+            Case "Количество TextField" : SelectByCountSectRows(8)
+            Case "Количество User Cells" : SelectByCountSectRows(242)
+
             Case "Количество субфигур" : SelectByCountSub()
             Case "Data123" : SelectByData()
             Case "Shapesheet" : SelectShapesheet()
@@ -168,6 +184,7 @@ Msg:
         MsgBox("Ошибка!" & vbNewLine & "Возможно оператор не соотвествует заданному типу значения", 48, "Быстрый выбор")
         winObj.Selection = visSelObj
         visSelObj = Nothing : Erase strTemp
+
     End Sub
 
 #Region "Functions"
@@ -189,7 +206,7 @@ Msg:
     End Function
 
     Private Function FtxtV()
-        ' ************************************** Свести все функции сюда!!!!!
+
         If winObj.Selection.Count = 0 Then
             Return ""
         Else
@@ -223,11 +240,24 @@ Msg:
                     Case "Конец X" : Return .Cells("EndX").Result(64)
                     Case "Конец Y" : Return .Cells("EndY").Result(64)
                     Case "Количество субфигур" : Return .Shapes.Count
+
+                    Case "Количество секций Geometry" : Return .GeometryCount
+                    Case "Количество Actions" : If .SectionExists(240, 1) Then Return .Section(240).Count Else Return 0
+                    Case "Количество Connection Points" : If .SectionExists(7, 1) Then Return .Section(7).Count Else Return 0
+                    Case "Количество Controls" : If .SectionExists(9, 1) Then Return .Section(9).Count Else Return 0
+                    Case "Количество Character" : If .SectionExists(3, 1) Then Return .Section(3).Count Else Return 0
+                    Case "Количество HyperLink" : If .SectionExists(244, 1) Then Return .Section(244).Count Else Return 0
+                    Case "Количество Paragraph" : If .SectionExists(4, 1) Then Return .Section(4).Count Else Return 0
+                    Case "Количество Scratch" : If .SectionExists(6, 1) Then Return .Section(6).Count Else Return 0
+                    Case "Количество TextField" : If .SectionExists(8, 1) Then Return .Section(8).Count Else Return 0
+                    Case "Количество Shape Data" : If .SectionExists(243, 1) Then Return .Section(243).Count Else Return 0
+                    Case "Количество User Cells" : If .SectionExists(242, 1) Then Return .Section(242).Count Else Return 0
+                    Case "Количество Tab" : If .SectionExists(5, 1) Then Return .Section(5).Count Else Return 0
+
                     Case "Размер шрифта" : Return CSng(.Cells("Char.Size[1]").Result("pt"))
                     Case "Длина" : If .OneD = -1 Then Return vsoApp.ConvertResult(.LengthIU, "in", 64)
                     Case "Периметр" : If .Type <> 2 AndAlso .OneD <> -1 Then Return vsoApp.ConvertResult(.LengthIU, "in", 64)
                     Case "Площадь" : If .Type = 2 Or .Type = 3 Then Return vsoApp.ConvertResult(.AreaIU, "in", 64)
-                        'Case "Площадь" : If .Type = 2 Or .Type = 3 Then Return vsoApp.ConvertResult(vsoApp.ConvertResult(.AreaIU, "in", 64), "in", 64)
                     Case "Сглаживание угла" : Return .Cells("Rounding").Result(64)
                     Case "Тип линии" : Return .Cells("LinePattern").Result("")
                     Case "Тип заливки" : Return .Cells("FillPattern").Result("")
@@ -281,6 +311,23 @@ Msg:
         MsgBox("Ошибка!" & vbNewLine & "Значение - " & cmbValue.Text & " не является числом", 48, "Быстрый выбор")
     End Function
 
+    Private Function fReadGroups()
+        Dim i As Integer, strTemp As String = ""
+
+        With winObj.Shape
+            If .SectionExists(242, 1) Then
+                For i = 0 To .Section(242).Count - 1
+                    If .Section(242).Row(i).NameU Like "GroupShapes_###*" Then
+                        strTemp = strTemp & .Section(242).Row(i).Cell(1).ResultStr("") & ","
+                    End If
+                Next
+                Return Strings.Left(strTemp, Strings.Len(strTemp) - 1)
+            Else
+                Return ""
+            End If
+        End With
+    End Function
+
 #End Region
 
 #Region "Func. Procedure"
@@ -300,13 +347,13 @@ Msg:
         For Each sh In visSelObj
             Select Case cmbValue.Text
                 Case "Простая фигура"
-                    If sh.Type <> 2 Then winObj.Select(sh, intSel)
+                    If Not SelSh(sh.Type, 2) Then winObj.Select(sh, intSel)
                 Case "Одномерная фигура"
-                    If sh.OneD = -1 Then winObj.Select(sh, intSel)
+                    If SelSh(sh.OneD, -1) Then winObj.Select(sh, intSel)
                 Case "Коннектор"
-                    If sh.OneD = -1 AndAlso sh.CellsU("ObjType").Result("") = 2 Then winObj.Select(sh, intSel)
+                    If sh.OneD = -1 AndAlso sh.Cells("ObjType").Result("") = 2 Then winObj.Select(sh, intSel)
                 Case "Сгруппированная фигура"
-                    If sh.Type = 2 Then winObj.Select(sh, intSel)
+                    If SelSh(sh.Type, 2) Then winObj.Select(sh, intSel)
                 Case "Надпись"
                     If sh.Type <> 2 AndAlso sh.Characters.Text <> "" AndAlso sh.Cells("LinePattern").Result("") = 0 AndAlso sh.Cells("FillPattern").Result("") = 0 Then winObj.Select(sh, intSel)
                 Case "Выноска"
@@ -316,15 +363,15 @@ Msg:
                 Case "Контейнер"
                     If sh.CellExistsU("User.msvStructureType", 0) AndAlso sh.Cells("User.msvStructureType").ResultStr("") = "Container" Then winObj.Select(sh, intSel)
                 Case "Направляющая"
-                    If sh.Type = 5 Then winObj.Select(sh, intSel)
+                    If SelSh(sh.Type, 5) Then winObj.Select(sh, intSel)
                 Case "Растровый рисунок"
-                    If sh.ForeignType = 32 Then winObj.Select(sh, intSel)
+                    If SelSh(sh.ForeignType, 32) Then winObj.Select(sh, intSel)
                 Case "Метафайл"
-                    If sh.ForeignType = 16 Then winObj.Select(sh, intSel)
+                    If SelSh(sh.ForeignType, 16) Then winObj.Select(sh, intSel)
                 Case "Объект OLE"
-                    If sh.ForeignType = -32256 Then winObj.Select(sh, intSel)
+                    If SelSh(sh.ForeignType, -32256) Then winObj.Select(sh, intSel)
                 Case "Рукописный объект"
-                    If sh.ForeignType = 64 Then winObj.Select(sh, intSel)
+                    If SelSh(sh.ForeignType, 64) Then winObj.Select(sh, intSel)
             End Select
         Next
 
@@ -495,6 +542,42 @@ Msg:
         Next
     End Sub
 
+    Private Sub SelectByCountGeometry()
+        If Not IsNumeric(cmbValue.Text) Then
+            MsgNotNum()
+            Exit Sub
+        End If
+        Dim sh As Visio.Shape
+        Dim intVal As Integer = Int(cmbValue.Text)
+
+        If intVal < 0 Then Exit Sub
+
+        For Each sh In visSelObj
+            If SelSh(sh.GeometryCount, intVal) Then winObj.Select(sh, intSel)
+        Next
+
+    End Sub
+
+    Private Sub SelectByCountSectRows(arg)
+        If Not IsNumeric(cmbValue.Text) Then
+            MsgNotNum()
+            Exit Sub
+        End If
+        Dim sh As Visio.Shape
+        Dim intVal As Integer = Int(cmbValue.Text)
+
+        If intVal < 0 Then Exit Sub
+
+        For Each sh In visSelObj
+            If Not sh.SectionExists(arg, 1) Then
+                If SelSh(0, intVal) Then winObj.Select(sh, intSel)
+            Else
+                If SelSh(sh.Section(arg).Count, intVal) Then winObj.Select(sh, intSel)
+            End If
+        Next
+
+    End Sub
+
     Private Sub SelectByCountSub()
         If Not IsNumeric(cmbValue.Text) Then
             MsgNotNum()
@@ -639,9 +722,28 @@ Msg:
         frmNewFRM = Nothing
     End Sub
 
+    Private Sub btn_Save_Click(sender As Object, e As EventArgs) Handles btn_Save.Click
+        If winObj.Selection.Count = 0 AndAlso fReadGroups() = "" Then
+            GoTo Msg
+        Else
+            frmNewFRM2 = New dlgSaveSelectForm
+            frmNewFRM2.ShowDialog()
+        End If
+        Exit Sub
+Msg:
+        MsgBox("Нет выделенных объектов и сохраненных групп на текущей странице", vbInformation, "Ошибка")
+    End Sub
+
     Private Sub btn_Close_Click(sender As Object, e As EventArgs) Handles btn_Close.Click
         SaveSettings(1)
         Me.Close()
+    End Sub
+
+    Private Sub ToolTip()
+        With Me
+            .ToolTip1.SetToolTip(.btn_Save, "Сохранение выделенных групп фигур")
+            .ToolTip1.SetToolTip(.lblReport, "Количество фигур на листе, всего/выделено")
+        End With
     End Sub
 
 End Class

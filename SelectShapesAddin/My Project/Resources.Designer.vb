@@ -356,8 +356,13 @@ Namespace My.Resources
         '''      &lt;tab idMso=&quot;TabHome&quot;&gt;
         '''        &lt;group id=&quot;Group1&quot; label=&quot;SelectShapes&quot;&gt;
         '''
-        '''          &lt;!--&lt;button id=&quot;Command1&quot; size=&quot;large&quot; getLabel=&quot;OnGetRibbonLabel&quot; onAction=&quot;OnRibbonButtonClick&quot; getEnabled=&quot;IsRibbonCommandEnabled&quot; getImage=&quot;GetRibbonImage&quot; /&gt;--&gt;
-        '''          &lt;button id=&quot;Command2&quot; size=&quot;large&quot; getLabel=&quot;OnGetRibbonLabel&quot; onAction=&quot;OnRibbonButt [остаток строки не уместился]&quot;;.
+        '''          &lt;button id=&quot;QuickSelect&quot; 
+        '''            size=&quot;large&quot; 
+        '''            label=&quot;Быстрый выбор&quot; 
+        '''            onAction=&quot;OnRibbonButtonClick&quot; 
+        '''            getEnabled=&quot;IsRibbonCommandEnabled&quot; 
+        '''            imageMso=&quot;SelectMenu&quot;
+        '''            screentip=&quot;Быстрый выбор фигур [остаток строки не уместился]&quot;;.
         '''</summary>
         Friend ReadOnly Property Ribbon() As String
             Get
@@ -483,7 +488,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Ищет локализованную строку, похожую на Типы объектов,Слой,Имя мастера,Имя фигуры,ID фигуры,Текст,Стиль текста,Стиль линии,Стиль заливки,Длина,Периметр,Площадь,Положение X,Положение Y,Начало X,Начало Y,Конец X,Конец Y,Угол,Ширина,Высота,Тип линии,Тип заливки,Толщина линии,Сглаживание угла,Цвет заливки,Цвет линии,Цвет шрифта,Размер шрифта,Шрифт,Количество субфигур,Data123,Shapesheet.
+        '''  Ищет локализованную строку, похожую на Типы объектов,Слой,Имя мастера,Имя фигуры,ID фигуры,Текст,Стиль текста,Стиль линии,Стиль заливки,Длина,Периметр,Площадь,Положение X,Положение Y,Начало X,Начало Y,Конец X,Конец Y,Угол,Ширина,Высота,Тип линии,Тип заливки,Толщина линии,Сглаживание угла,Цвет заливки,Цвет линии,Цвет шрифта,Размер шрифта,Шрифт,Количество субфигур,Количество секций Geometry,Количество Actions,Количество Character,Количество Connection Points,Количество Controls,Количество HyperLink,Количество Paragraph,Количество Scratch,Количеств [остаток строки не уместился]&quot;;.
         '''</summary>
         Friend ReadOnly Property Все_объекты() As String
             Get

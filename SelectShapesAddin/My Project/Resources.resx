@@ -128,7 +128,7 @@
     <value>..\Resources\Ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Все_объекты" xml:space="preserve">
-    <value>Типы объектов,Слой,Имя мастера,Имя фигуры,ID фигуры,Текст,Стиль текста,Стиль линии,Стиль заливки,Длина,Периметр,Площадь,Положение X,Положение Y,Начало X,Начало Y,Конец X,Конец Y,Угол,Ширина,Высота,Тип линии,Тип заливки,Толщина линии,Сглаживание угла,Цвет заливки,Цвет линии,Цвет шрифта,Размер шрифта,Шрифт,Количество субфигур,Data123,Shapesheet</value>
+    <value>Типы объектов,Слой,Имя мастера,Имя фигуры,ID фигуры,Текст,Стиль текста,Стиль линии,Стиль заливки,Длина,Периметр,Площадь,Положение X,Положение Y,Начало X,Начало Y,Конец X,Конец Y,Угол,Ширина,Высота,Тип линии,Тип заливки,Толщина линии,Сглаживание угла,Цвет заливки,Цвет линии,Цвет шрифта,Размер шрифта,Шрифт,Количество субфигур,Количество секций Geometry,Количество Actions,Количество Character,Количество Connection Points,Количество Controls,Количество HyperLink,Количество Paragraph,Количество Scratch,Количество Shape Data,Количество Tab,Количество TextField,Количество User Cells,Data123,Shapesheet</value>
   </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions.Row_1.Action,Actions.Row_1.Menu,Actions.Row_1.TagName,Actions.Row_1.ButtonFace,Actions.Row_1.SortKey,Actions.Row_1.Checked,Actions.Row_1.Disabled,Actions.Row_1.ReadOnly,Actions.Row_1.Invisible,Actions.Row_1.BeginGroup,Actions.Row_1.FlyoutChild</value>
