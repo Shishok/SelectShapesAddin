@@ -3,6 +3,7 @@
     Dim vsoApp As Visio.Application = Globals.ThisAddIn.Application
     Dim winObj As Visio.Window
     Dim UserRow As Visio.Row
+    Dim UndoScopeID As Long = 0
 
 #Region "Subs"
 
@@ -15,7 +16,9 @@
 
         If fCheckName(strPrompt) Then GoTo Msg2
 
+        Call RecUndo("Добавить новую группу")
         Call AddRow(fStringID(), strPrompt)
+        Call RecUndo("0")
 
         Exit Sub
 Msg:
@@ -36,7 +39,10 @@ Msg2:
         If fCheckName(strPrompt) Then GoTo Msg1
 
         Dim strValue As String = winObj.Shape.Section(242).Row(fGetRowIndex(arg)).Cell(0).ResultStr("")
+
+        Call RecUndo("Клонировать группу")
         Call AddRow(winObj.Shape.Section(242).Row(fGetRowIndex(arg)).Cell(0).ResultStr(""), strPrompt)
+        Call RecUndo("0")
 
         Exit Sub
 Msg:
@@ -69,8 +75,10 @@ Msg1:
 
         UserRow = winObj.Shape.Section(242).Row(fGetRowIndex(arg))
         Dim strTemp As String = UserRow.Cell(0).ResultStr("") & "," & fStringID()
-        UserRow.Cell(0).FormulaForceU = """" & strTemp & """"
 
+        Call RecUndo("Добавить выделенные в группу")
+        UserRow.Cell(0).FormulaForceU = """" & strTemp & """"
+        Call RecUndo("0")
     End Sub
 
     Private Sub RemoveIdFromGroup(arg)
@@ -84,7 +92,9 @@ Msg1:
             For j = 1 To .Selection.Count
                 strTemp = fReplace(strTemp, .Selection(j).ID)
             Next
+            Call RecUndo("Удалить выделенные из группы")
             UserRow.Cell(0).FormulaForceU = """" & strTemp & """"
+            Call RecUndo("0")
         End With
 
     End Sub
@@ -99,6 +109,7 @@ Msg1:
             UserRow = .Section(242).Row(fGetRowIndex(arg))
             ListID = Split(UserRow.Cell(0).ResultStr(""), ",")
 
+            Call RecUndo("Удалить несуществующие ID из группы")
             On Error Resume Next
             For j = 0 To UBound(ListID)
                 tmp = Shs.ItemFromID(Val(ListID(j))).ID
@@ -107,6 +118,7 @@ Msg1:
                     Err.Clear()
                 End If
             Next
+            Call RecUndo("0")
         End With
 
     End Sub
@@ -115,6 +127,8 @@ Msg1:
         If cmb_ListGroups.SelectedItem = "" Then Exit Sub
 
         Dim i As Integer
+
+        Call RecUndo("Удалить группу/группы")
 
         With winObj.Shape
             For i = .Section(242).Count - 1 To 0 Step -1
@@ -130,6 +144,8 @@ Msg1:
 
             If .Section(242).Count = 0 Then .DeleteSection(242)
         End With
+
+        Call RecUndo("0")
 
     End Sub
 
@@ -153,6 +169,14 @@ Msg1:
         cmb_ListGroups.Items.Clear()
         cmb_ListGroups.Items.AddRange(Split(fReadGroups, ","))
         If cmb_ListGroups.Items.Count <> 0 Then cmb_ListGroups.SelectedIndex = 0
+    End Sub
+
+    Private Sub RecUndo(index)
+        If index <> "0" Then
+            UndoScopeID = vsoApp.BeginUndoScope(index)
+        Else
+            vsoApp.EndUndoScope(UndoScopeID, True)
+        End If
     End Sub
 
 #End Region
