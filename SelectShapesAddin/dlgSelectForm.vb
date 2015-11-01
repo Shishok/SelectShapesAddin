@@ -311,19 +311,19 @@ Msg:
         MsgBox("Ошибка!" & vbNewLine & "Значение - " & cmbValue.Text & " не является числом", 48, "Быстрый выбор")
     End Function
 
-    Private Function fReadGroups()
-        Dim i As Integer, strTemp As String = ""
+    Private Function fReadGroups() As Boolean
+        Dim i As Integer, booTemp As Boolean = False
 
         With winObj.Shape
             If .SectionExists(242, 1) Then
                 For i = 0 To .Section(242).Count - 1
                     If .Section(242).Row(i).NameU Like "GroupShapes_###*" Then
-                        strTemp = strTemp & .Section(242).Row(i).Cell(1).ResultStr("") & ","
+                        Return True
                     End If
                 Next
-                Return Strings.Left(strTemp, Strings.Len(strTemp) - 1)
+                Return booTemp
             Else
-                Return ""
+                Return False
             End If
         End With
     End Function
@@ -723,7 +723,7 @@ Msg:
     End Sub
 
     Private Sub btn_Save_Click(sender As Object, e As EventArgs) Handles btn_Save.Click
-        If winObj.Selection.Count = 0 AndAlso fReadGroups() = "" Then
+        If winObj.Selection.Count = 0 AndAlso Not fReadGroups() Then
             GoTo Msg
         Else
             frmNewFRM2 = New dlgSaveSelectForm
