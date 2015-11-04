@@ -91,6 +91,8 @@
                   "Количество Character", "Количество HyperLink", "Количество Paragraph", "Количество Scratch", "Количество Shape Data", "Количество Tab", "Количество TextField", "Количество User Cells"
                 AddOperator(1) : cmbValue.Text = FtxtV()
             Case "Data123" : AddOperator(2) : cmbValue.Text = FtxtV()
+                'Case "Свойства субфигуры"
+                '    arrSH(0) = Strings.Trim(InputBox("Введите ID субфигуры по свойствам которой будет производиться поиск", "ID субфигуры", FtxtV()))
             Case "Shapesheet"
                 'AddOperator(3) 
                 frmNewFRM1 = New dlgShapeSheetForm
@@ -167,12 +169,13 @@
             Case "Количество Paragraph" : SelectByCountSectRows(4)
             Case "Количество Scratch" : SelectByCountSectRows(6)
             Case "Количество Shape Data" : SelectByCountSectRows(243)
-            Case "Количество Tab" : SelectByCountSectRows(5)
+            Case "Количество Tab" : SelectByCountTab()
             Case "Количество TextField" : SelectByCountSectRows(8)
             Case "Количество User Cells" : SelectByCountSectRows(242)
 
             Case "Количество субфигур" : SelectByCountSub()
             Case "Data123" : SelectByData()
+                'Case "Свойства субфигуры" : SelectPropSubShape()
             Case "Shapesheet" : SelectShapesheet()
         End Select
 
@@ -206,11 +209,21 @@ Msg:
     End Function
 
     Private Function FtxtV()
+        Dim SelObj As Visio.Selection = winObj.Selection
 
-        If winObj.Selection.Count = 0 Then
+        'If lstProperties.SelectedItem = "Свойства субфигуры" Then
+        '    SelObj.IterationMode = 2048 'Visio.VisSelectMode.visSelModeOnlySub
+        '    If SelObj.PrimaryItem Is Nothing Then
+        '        Return ""
+        '    Else
+        '        Return SelObj.PrimaryItem.ID
+        '    End If
+        'End If
+
+        If SelObj.Count = 0 Then
             Return ""
         Else
-            With winObj.Selection(1)
+            With SelObj(1)
                 'winObj.Page.Shapes.ItemFromID(intID)
                 Select Case lstProperties.SelectedItem
                     Case "Слой"
@@ -252,7 +265,7 @@ Msg:
                     Case "Количество TextField" : If .SectionExists(8, 1) Then Return .Section(8).Count Else Return 0
                     Case "Количество Shape Data" : If .SectionExists(243, 1) Then Return .Section(243).Count Else Return 0
                     Case "Количество User Cells" : If .SectionExists(242, 1) Then Return .Section(242).Count Else Return 0
-                    Case "Количество Tab" : If .SectionExists(5, 1) Then Return .Section(5).Count Else Return 0
+                    Case "Количество Tab" : If .SectionExists(5, 1) Then Return .CellsSRC(5, 0, 0).Result(32) Else Return 0
 
                     Case "Размер шрифта" : Return CSng(.Cells("Char.Size[1]").Result("pt"))
                     Case "Длина" : If .OneD = -1 Then Return vsoApp.ConvertResult(.LengthIU, "in", 64)
@@ -332,14 +345,22 @@ Msg:
 
 #Region "Func. Procedure"
 
-    Private Sub MainSel(id)
+    'Private Sub SelectPropSubShape()
+    '    Dim sh As Visio.Shape, subsh As Visio.Shape
 
-        Select Case ckbSubSh.Checked
-            Case False : winObj.Select(id, intSel)
-            Case True : winObj.Select(winObj.Page.Shapes.ItemFromID(id), 3)
-        End Select
+    '    winObj.Selection.IterationMode = 1280
+    '    winObj.Select(winObj.Page.Shapes.item(1), 256)
 
-    End Sub
+    '    For Each sh In visSelObj
+    '        If sh.Shapes.Count > 0 Then
+    '            For Each subsh In sh.Shapes
+    '                If SelSh(subsh.Data1, cmbValue.Text) Then winObj.Select(sh, intSel)
+    '            Next
+    '        End If
+    '    Next
+    '    'If arrSH(0) Then
+
+    'End Sub
 
     Private Sub SelectTypeObj()
         Dim sh As Visio.Shape
@@ -586,9 +607,24 @@ Msg:
         Dim sh As Visio.Shape
         Dim intVal As Integer = Int(cmbValue.Text)
 
-        If intVal < 1 Then Exit Sub
+        If intVal < 0 Then Exit Sub
         For Each sh In visSelObj
             If sh.Type = 2 AndAlso SelSh(sh.Shapes.Count, intVal) Then winObj.Select(sh, intSel)
+        Next
+    End Sub
+
+    Private Sub SelectByCountTab()
+        If Not IsNumeric(cmbValue.Text) Then
+            MsgNotNum()
+            Exit Sub
+        End If
+        Dim sh As Visio.Shape
+        Dim intVal As Integer = Int(cmbValue.Text)
+
+        If intVal < 0 Then Exit Sub
+
+        For Each sh In visSelObj
+            If SelSh(sh.CellsSRC(5, 0, 0).Result(32), intVal) Then winObj.Select(sh, intSel)
         Next
     End Sub
 
@@ -688,7 +724,7 @@ Msg:
                     Me.Left = GetSetting(AppName:=An, Section:=Sc, Key:="Left")
                     Me.Height = GetSetting(AppName:=An, Section:=Sc, Key:="Height")
 
-                    If Int(GetSetting(AppName:=An, Section:=Sc, Key:="Properties")) <> 32 Then
+                    If GetSetting(AppName:=An, Section:=Sc, Key:="Properties") <> "ShapeSheet" Then
                         lstProperties.SelectedIndex = Int(GetSetting(AppName:=An, Section:=Sc, Key:="Properties"))
                         cmbOperator.SelectedIndex = Int(GetSetting(AppName:=An, Section:=Sc, Key:="Operator"))
                         If winObj.Selection.Count = 0 Then cmbValue.Text = GetSetting(AppName:=An, Section:=Sc, Key:="Value")
@@ -726,8 +762,8 @@ Msg:
         If winObj.Selection.Count = 0 AndAlso Not fReadGroups() Then
             GoTo Msg
         Else
-            frmNewFRM2 = New dlgSaveSelectForm
-            frmNewFRM2.ShowDialog()
+            frmNewFRM1 = New dlgSaveSelectForm
+            frmNewFRM1.ShowDialog()
         End If
         Exit Sub
 Msg:

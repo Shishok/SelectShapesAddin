@@ -282,6 +282,10 @@ Msg1:
         RemoveMissingIdFromGroup(cmb_ListGroups.SelectedItem)
     End Sub
 
+    Private Sub dlgSaveSelectForm_FormClosed(sender As Object, e As Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        frmNewFRM1 = Nothing
+    End Sub
+
 #End Region
 
 End Class
