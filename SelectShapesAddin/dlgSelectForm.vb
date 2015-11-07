@@ -12,7 +12,7 @@
         lstProperties.Items.AddRange(Split(My.Resources.ResourceManager.GetString("Все_объекты"), ","))
         CountSel()
         SaveSettings(0)
-        Call ToolTip()
+        ToolTip()
     End Sub
 
     Private Sub dlgSelectForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
@@ -91,10 +91,7 @@
                   "Количество Character", "Количество HyperLink", "Количество Paragraph", "Количество Scratch", "Количество Shape Data", "Количество Tab", "Количество TextField", "Количество User Cells"
                 AddOperator(1) : cmbValue.Text = FtxtV()
             Case "Data123" : AddOperator(2) : cmbValue.Text = FtxtV()
-                'Case "Свойства субфигуры"
-                '    arrSH(0) = Strings.Trim(InputBox("Введите ID субфигуры по свойствам которой будет производиться поиск", "ID субфигуры", FtxtV()))
             Case "Shapesheet"
-                'AddOperator(3) 
                 frmNewFRM1 = New dlgShapeSheetForm
                 frmNewFRM1.ShowDialog()
         End Select
@@ -159,7 +156,6 @@
             Case "Цвет шрифта" : SelectByTypeColor("Char.Color[1]")
             Case "Размер шрифта" : SelectBySizeFont()
             Case "Шрифт" : SelectByFont()
-
             Case "Количество секций Geometry" : SelectByCountGeometry()
             Case "Количество Actions" : SelectByCountSectRows(240)
             Case "Количество Connection Points" : SelectByCountSectRows(7)
@@ -172,10 +168,8 @@
             Case "Количество Tab" : SelectByCountTab()
             Case "Количество TextField" : SelectByCountSectRows(8)
             Case "Количество User Cells" : SelectByCountSectRows(242)
-
             Case "Количество субфигур" : SelectByCountSub()
             Case "Data123" : SelectByData()
-                'Case "Свойства субфигуры" : SelectPropSubShape()
             Case "Shapesheet" : SelectShapesheet()
         End Select
 
@@ -253,7 +247,6 @@ Msg:
                     Case "Конец X" : Return .Cells("EndX").Result(64)
                     Case "Конец Y" : Return .Cells("EndY").Result(64)
                     Case "Количество субфигур" : Return .Shapes.Count
-
                     Case "Количество секций Geometry" : Return .GeometryCount
                     Case "Количество Actions" : If .SectionExists(240, 1) Then Return .Section(240).Count Else Return 0
                     Case "Количество Connection Points" : If .SectionExists(7, 1) Then Return .Section(7).Count Else Return 0
@@ -266,7 +259,6 @@ Msg:
                     Case "Количество Shape Data" : If .SectionExists(243, 1) Then Return .Section(243).Count Else Return 0
                     Case "Количество User Cells" : If .SectionExists(242, 1) Then Return .Section(242).Count Else Return 0
                     Case "Количество Tab" : If .SectionExists(5, 1) Then Return .CellsSRC(5, 0, 0).Result(32) Else Return 0
-
                     Case "Размер шрифта" : Return CSng(.Cells("Char.Size[1]").Result("pt"))
                     Case "Длина" : If .OneD = -1 Then Return vsoApp.ConvertResult(.LengthIU, "in", 64)
                     Case "Периметр" : If .Type <> 2 AndAlso .OneD <> -1 Then Return vsoApp.ConvertResult(.LengthIU, "in", 64)
@@ -372,17 +364,17 @@ Msg:
                 Case "Одномерная фигура"
                     If SelSh(sh.OneD, -1) Then winObj.Select(sh, intSel)
                 Case "Коннектор"
-                    If sh.OneD = -1 AndAlso sh.Cells("ObjType").Result("") = 2 Then winObj.Select(sh, intSel)
+                    If SelSh((sh.OneD = -1 And sh.Cells("ObjType").Result("") = 2), True) Then winObj.Select(sh, intSel)
                 Case "Сгруппированная фигура"
                     If SelSh(sh.Type, 2) Then winObj.Select(sh, intSel)
                 Case "Надпись"
-                    If sh.Type <> 2 AndAlso sh.Characters.Text <> "" AndAlso sh.Cells("LinePattern").Result("") = 0 AndAlso sh.Cells("FillPattern").Result("") = 0 Then winObj.Select(sh, intSel)
+                    If SelSh((sh.Type <> 2 And sh.Characters.Text <> "" And sh.Cells("LinePattern").Result("") = 0 And sh.Cells("FillPattern").Result("") = 0), True) Then winObj.Select(sh, intSel)
                 Case "Выноска"
-                    If sh.CellExistsU("User.msvStructureType", 0) AndAlso sh.Cells("User.msvStructureType").ResultStr("") = "Callout" Then winObj.Select(sh, intSel)
+                    If SelSh((sh.CellExistsU("User.msvStructureType", 0) AndAlso sh.Cells("User.msvStructureType").ResultStr("") = "Callout"), True) Then winObj.Select(sh, intSel)
                 Case "Размер"
-                    If sh.CellExistsU("Prop.Extensions", 0) AndAlso sh.Cells("Prop.Extensions.Label").ResultStr("") = "Выносные линии" Then winObj.Select(sh, intSel)
+                    If SelSh((sh.CellExistsU("Prop.Extensions", 0) AndAlso sh.Cells("Prop.Extensions.Label").ResultStr("") = "Выносные линии"), True) Then winObj.Select(sh, intSel)
                 Case "Контейнер"
-                    If sh.CellExistsU("User.msvStructureType", 0) AndAlso sh.Cells("User.msvStructureType").ResultStr("") = "Container" Then winObj.Select(sh, intSel)
+                    If SelSh((sh.CellExistsU("User.msvStructureType", 0) AndAlso sh.Cells("User.msvStructureType").ResultStr("") = "Container"), True) Then winObj.Select(sh, intSel)
                 Case "Направляющая"
                     If SelSh(sh.Type, 5) Then winObj.Select(sh, intSel)
                 Case "Растровый рисунок"
@@ -724,7 +716,7 @@ Msg:
                     Me.Left = GetSetting(AppName:=An, Section:=Sc, Key:="Left")
                     Me.Height = GetSetting(AppName:=An, Section:=Sc, Key:="Height")
 
-                    If GetSetting(AppName:=An, Section:=Sc, Key:="Properties") <> "ShapeSheet" Then
+                    If GetSetting(AppName:=An, Section:=Sc, Key:="Properties") <> 44 Then
                         lstProperties.SelectedIndex = Int(GetSetting(AppName:=An, Section:=Sc, Key:="Properties"))
                         cmbOperator.SelectedIndex = Int(GetSetting(AppName:=An, Section:=Sc, Key:="Operator"))
                         If winObj.Selection.Count = 0 Then cmbValue.Text = GetSetting(AppName:=An, Section:=Sc, Key:="Value")
